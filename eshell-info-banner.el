@@ -137,6 +137,12 @@
   :type 'string
   :safe #'stringp)
 
+(defcustom eshell-info-banner-column-separator-char ":"
+  "Character to use to separate labels from their values."
+  :group 'eshell-info-banner
+  :type 'string
+  :safe #'stringp)
+
 (defcustom eshell-info-banner-warning-percentage 75
   "When to warn about a percentage."
   :group 'eshell-info-banner
@@ -503,7 +509,7 @@ For TEXT-PADDING and BAR-LENGTH, see the documentation of
                        (eshell-info-banner--with-face
                         (eshell-info-banner--mounted-partitions-path partition)
                         :weight 'bold))
-          ": "
+          eshell-info-banner-column-separator-char " "
           (eshell-info-banner--progress-bar-without-prefix
            bar-length
            (eshell-info-banner--mounted-partitions-used partition)
@@ -645,7 +651,7 @@ TYPE and the colon.
 BAR-LENGTH determines the length of the progress bar to be
 displayed."
   (concat (s-pad-right text-padding eshell-info-banner-right-padding-char type)
-          ": "
+          eshell-info-banner-column-separator-char " "
           (eshell-info-banner--progress-bar-without-prefix bar-length used total t)))
 
 (defun eshell-info-banner--display-memory (text-padding bar-length)
@@ -737,7 +743,7 @@ the warning face with a battery level of 25% or less."
                                                        (match-beginning 1)
                                                        (match-end 1))))))
         (concat (s-pad-right text-padding eshell-info-banner-right-padding-char "Battery")
-                ": "
+                eshell-info-banner-column-separator-char " "
                 (eshell-info-banner--progress-bar bar-length
                                                   percentage
                                                   t)
@@ -912,14 +918,16 @@ build number)."
                                bar-length)))
     (concat (format "%s\n" (eshell-info-banner--string-repeat eshell-info-banner-double-width-line-char
                                                               tot-width))
-            (format "%s: %s Kernel.: %s\n"
+            (format "%s%s %s Kernel.: %s\n"
                     (s-pad-right left-padding
                                  eshell-info-banner-right-padding-char
                                  "OS")
+                    eshell-info-banner-column-separator-char
                     (s-pad-right middle-padding " " (eshell-info-banner--with-face os :weight 'bold))
                     kernel)
-            (format "%s: %s Uptime.: %s\n"
+            (format "%s%s %s Uptime.: %s\n"
                     (s-pad-right left-padding eshell-info-banner-right-padding-char "Hostname")
+                    eshell-info-banner-column-separator-char
                     (s-pad-right middle-padding " " (eshell-info-banner--with-face hostname :weight 'bold))
                     uptime)
             (eshell-info-banner--display-battery left-padding bar-length)
