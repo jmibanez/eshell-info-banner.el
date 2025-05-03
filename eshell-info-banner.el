@@ -125,6 +125,12 @@
   :type 'string
   :safe #'stringp)
 
+(defcustom eshell-info-banner-double-width-line-char "="
+  "Character to use as a double-width line."
+  :group 'eshell-info-banner
+  :type 'string
+  :safe #'stringp)
+
 (defcustom eshell-info-banner-warning-percentage 75
   "When to warn about a percentage."
   :group 'eshell-info-banner
@@ -898,7 +904,7 @@ build number)."
          (bar-length         (if (equal eshell-info-banner-file-size-flavor 'iec)
                                  (- bar-length 4)
                                bar-length)))
-    (concat (format "%s\n" (eshell-info-banner--string-repeat eshell-info-banner-progress-bar-char
+    (concat (format "%s\n" (eshell-info-banner--string-repeat eshell-info-banner-double-width-line-char
                                                               tot-width))
             (format "%s: %s Kernel.: %s\n"
                     (s-pad-right left-padding
@@ -913,7 +919,7 @@ build number)."
             (eshell-info-banner--display-battery left-padding bar-length)
             (eshell-info-banner--display-memory left-padding bar-length)
             (eshell-info-banner--display-partitions left-padding bar-length)
-            (format "\n%s\n" (eshell-info-banner--string-repeat eshell-info-banner-progress-bar-char
+            (format "\n%s\n" (eshell-info-banner--string-repeat eshell-info-banner-double-width-line-char
                                                                 tot-width)))))
 
 ;;;###autoload
