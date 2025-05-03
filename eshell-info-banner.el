@@ -87,7 +87,10 @@
       ("^10\\.15\\." . "macOS Catalina")
       ("^10\\.16\\." . "macOS Big Sur")
       ("^11\\."      . "macOS Big Sur")
-      ("^12\\."      . "macOS Monterey"))
+      ("^12\\."      . "macOS Monterey")
+      ("^13\\."      . "macOS Ventura")
+      ("^14\\."      . "macOS Sonoma")
+      ("^15\\."      . "macOS Sequoia"))
     "Versions of OSX and macOS and their name."))
 
 (defconst eshell-info-banner--posix-shells '("bash" "zsh" "sh")
