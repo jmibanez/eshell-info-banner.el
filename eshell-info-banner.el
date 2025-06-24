@@ -90,7 +90,9 @@
       ("^12\\."      . "macOS Monterey")
       ("^13\\."      . "macOS Ventura")
       ("^14\\."      . "macOS Sonoma")
-      ("^15\\."      . "macOS Sequoia"))
+      ("^15\\."      . "macOS Sequoia")
+      ("^16\\."      . "macOS Tahoe")
+      ("^26\\."      . "macOS Tahoe"))
     "Versions of OSX and macOS and their name."))
 
 (defconst eshell-info-banner--posix-shells '("bash" "zsh" "sh")
